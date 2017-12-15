@@ -1,3 +1,7 @@
+# Project files
+raw_price_web_scraper/share_price
+raw_price_web_scraper/db_stock_data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
