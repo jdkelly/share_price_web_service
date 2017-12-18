@@ -1,6 +1,7 @@
 # Project files
 raw_price_web_scraper/share_price
 raw_price_web_scraper/db_stock_data
+raw_price_web_scraper/db_stock_data.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -103,3 +104,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# PyCharm
+.idea/

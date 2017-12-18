@@ -2,7 +2,7 @@
 
 # Development environment variables
 export APP_SETTINGS=
-export DATABASE_URL="sqlite:///db_stock_data"
+export DATABASE_URL="sqlite:///db_stock_data.db"
 
 # Stock price web scrapers
 1. Stock Information

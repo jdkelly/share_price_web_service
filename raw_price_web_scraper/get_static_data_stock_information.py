@@ -22,28 +22,49 @@ session = DBSession()
 indexes = {'ftse-100': [parse_hl_uk_index_prices, parse_sharesmagazine_fundamentals]}
 
 
+# def load_stock_information(indexes_dict):
+#     for index in indexes_dict:
+#         df = indexes_dict[index][0](index)
+#
+#         for share in df.iterrows():
+#             print('Getting data for', share[0])
+#             try:
+#                 fundamentals = parse_sharesmagazine_fundamentals(share[0])
+#                 fundamentals_row = StockInformation(
+#                                                     id=fundamentals['id'],
+#                                                     stock_name=fundamentals['stock_name'],
+#                                                     description=fundamentals['description'],
+#                                                     sector=fundamentals['sector'],
+#                                                     stock_index=fundamentals['stock_index']
+#                                                     )
+#                 print(fundamentals)
+#                 session.add(fundamentals_row)
+#             except IOError :
+#                 print('IO Error apparently')
+#             else:
+#                 print('Could not get data for', share[0])
+#
+#         session.commit()
+
+
 def load_stock_information(indexes_dict):
     for index in indexes_dict:
         df = indexes_dict[index][0](index)
 
         for share in df.iterrows():
-            print('Getting data for', share)
-            try:
-                fundamentals = parse_sharesmagazine_fundamentals(share[0])
-                fundamentals_row = StockInformation(
-                                                    id=fundamentals['id'],
-                                                    stock_name=fundamentals['stock_name'],
-                                                    description=fundamentals['description'],
-                                                    sector=fundamentals['sector'],
-                                                    stock_index=fundamentals['stock_index']
-                                                    )
-                session.add(fundamentals_row)
-            except IOError :
-                print('IO Error apparently')
-            else:
-                print('Could not get data for', share)
+            print('Getting data for', share[0])
 
-        session.commit()
+            fundamentals = parse_sharesmagazine_fundamentals(share[0])
+            fundamentals_row = StockInformation(
+                                                id=fundamentals['id'],
+                                                stock_name=fundamentals['stock_name'],
+                                                description=fundamentals['description'],
+                                                sector=fundamentals['sector'],
+                                                stock_index=fundamentals['stock_index']
+                                                )
+            session.add(fundamentals_row)
+
+            session.commit()
 
 if __name__ == '__main__':
     load_stock_information(indexes_dict=indexes)

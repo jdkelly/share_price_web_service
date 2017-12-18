@@ -22,13 +22,12 @@ class DailyStockPrices(Base):
 
     id = Column(Integer, primary_key=True)
     stock_id = Column(String(10), ForeignKey('stock_information.id'))
-    open = Column(Float)
-    close = Column(Float)
+    date_dt = Column(DateTime)
+    open_price = Column(Float)
+    close_price = Column(Float)
     high = Column(Float)
     low = Column(Float)
     volume = Column(Float)
-    change = Column(Float)
-    change_percent = Column(Float)
 
     stock_information = relationship(StockInformation)
 
@@ -44,4 +43,3 @@ class CurrentStockPrice(Base):
 
 
 Base.metadata.create_all(engine)
-
